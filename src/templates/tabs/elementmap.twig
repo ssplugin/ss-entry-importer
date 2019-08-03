@@ -1,0 +1,84 @@
+{% extends "ss-entry-importer/tabs/cp" %}
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set selectedTab = 'elementmap' %}
+{% set title = 'Location feed importer' %}
+
+{% set content %}
+	{% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
+	{% if settings.section and settings.entry_type %}
+		{% set section  = craft.sections.getSectionById( settings.section ) %}
+		{% set entryType = craft.sections.getSectionById( settings.section ).getEntryTypes() %}
+
+		<table>
+            <tbody>
+                <tr>
+                    <td><strong>Section: &nbsp;</strong></td>
+                    <td>{{ section }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Entry type:&nbsp;</strong></td>
+                    <td>{% for entfield in entryType %}{% if( entfield.id == settings.entry_type ) %} {{ entfield.handle }} {% endif %} {% endfor %} </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>  
+		<br><br>
+		<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+			{{ csrfInput() }}
+			<input type="hidden" name="action" value="ss-entry-importer/feed/import">
+			<table width="50%">
+				<thead>
+					<th>Fields</th>
+					<th>Element</th>
+				</thead>
+				<tbody class="field-mapping-tbl">
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>	
+					<tr>
+						<td><strong>Title</strong></td>
+						<td>
+							<div class="select">
+								<select  class="entry-title" name="title">
+									<option value="NULL">- Select -</option>				
+									{% for data in setting.response_header %}											
+										<option value="{{ data }}">{{data}}</option>						
+									{% endfor %}
+								 </select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>	
+					{% for entfield in entryType %}
+						{% if( entfield.id == settings.entry_type ) %}
+							{% for fields in entfield.getFieldLayout().getFields() %}
+								<tr>				
+									<td><strong>{{ fields.name }}</strong> <br/>(handle: {{ fields.handle }})					
+									</td>				
+									<td><div class="select">
+											<select class="element" name="setting[{{ fields.handle }}]">
+												<option value="NULL">- Select -</option>
+												{% for data in setting.response_header %}											
+													<option value="{{ data }}">{{data}}</option>						
+												{% endfor %}
+											</select>
+										</div>
+									</td>
+								</tr>
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+			<br>
+			<input type="submit" class="btn submit" value="Import">
+		</form>
+	{% else %}
+		<div class="error">
+			<h3>Please add section and entry type and then import CSV file.</h3>
+		</div>
+	{% endif %}
+{% endset %}

@@ -1,0 +1,43 @@
+{
+    "name": "ssplugin/ss-entry-importer",
+    "description": "The plugin will be used for an importing an entries from a CSV file.(Supported field type: Plain Text, Email, Radio Buttons, Dropdown, URL.)",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "ss entry importer"
+    ],
+    "support": {
+        "docs": "https://github.com/ssplugin/ss-field-importer",
+        "issues": "https://github.com/ssplugin/ss-field-importer"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SystemSeeders",
+            "homepage": "http://www.systemseeders.com/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "ssplugin\\ssentryimporter\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "SS Entry Importer",
+        "handle": "ss-entry-importer",
+        "hasCpSettings": true,
+        "hasCpSection": true,
+        "changelogUrl": "https://github.com/ssplugin/ss-field-importer/blob/master/CHANGELOG.md",
+        "components": {
+            "ssEntryImporterService": "ssplugin\\ssentryimporter\\services\\SsEntryImporterService"
+        },
+        "class": "ssplugin\\ssentryimporter\\SsEntryImporter"
+    }
+}

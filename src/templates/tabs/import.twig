@@ -1,0 +1,37 @@
+{% extends "ss-entry-importer/tabs/cp" %}
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set selectedTab = 'import' %}
+{% set content %}
+    {% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
+    {% if settings.section %}
+        {% set entryType = craft.sections.getSectionById( settings.section ).getEntryTypes() %}
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Section: &nbsp;</strong></td>
+                    <td>{% if settings.section %} {% set section = craft.sections.getSectionById(settings.section) %} {{ section }} {% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Entry type:&nbsp;</strong></td>
+                    <td>{% for entfield in entryType %}{% if( entfield.id == settings.entry_type ) %} {{ entfield.handle }} {% endif %} {% endfor %} </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>  
+    	<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+    		{{ csrfInput() }}
+          	<input type="hidden" name="action" value="ss-entry-importer/feed/upload" />
+          	<input type="hidden" name="redirect" value="" />
+                      
+          	<h3>Please upload/ Import CSV file here.</h3>
+          	<p><input type="file" name="file" multiple></p>      	
+      		<input type="submit" class="btn submit" value="Upload File">  		
+        </form>
+    {% else %}
+        <div class="error">
+            <h3>Please add section and entry type and then import CSV file.</h3>
+        </div>
+    {% endif %}
+    
+{% endset %}

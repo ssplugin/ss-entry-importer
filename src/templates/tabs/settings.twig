@@ -1,0 +1,71 @@
+{% extends "ss-entry-importer/tabs/cp" %}
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set selectedTab = 'settings' %}
+{% set sections = craft.sections.getAllSections() %}
+{% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
+{% set content %}
+	<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+		{{ csrfInput() }}
+      	<input type="hidden" name="action" value="ss-entry-importer/feed/addsection" />
+      	<input type="hidden" name="redirect" value="" />
+		<div class="field" id="ss-field">
+            <div class="heading">
+                <label id="section-name-label" for="section">Select section:</label>
+            </div>
+	        <div class="input ltr">
+	            <div class="select">
+	    		<select id="section-name" name="section">
+	    			<option value="">-Select-</option>       	    			
+	                {% for group in sections %}
+	        			<option value="{{group.id}}">{{group.name}}</option>
+	    			{% endfor %}
+	            </select>
+				</div>
+	    	</div><br>
+	    	<div class="heading">
+                <label id="enrty-name-label">Enrty type:</label>
+            </div>
+	    	<div class="input ltr">
+	            <div class="select">
+	    		<select id="entry-type" name="entry_type">	    			
+	    			<option value="">-Select-</option>
+	            </select>
+				</div>
+	    	</div><br>
+	    	<div class="heading">
+                <label id="enrty-name-label">Enrty status:</label>
+            </div>
+	    	<div class="input ltr">
+	            <div class="select">
+	    		<select id="entry-type" name="entry_status">	    			
+	    			<option value="true">Enable</option>
+	    			<option value="false">Disable</option>
+	            </select>
+				</div>
+	    	</div>
+        </div>
+    	<input class="btn submit" type="submit" value="{{ 'Continue'|t }}">
+    </form>
+    {% js %}
+        $('#section-name').change(function(e){
+        	var sec = $(this).val();
+        	if( sec != '') {
+	            e.preventDefault();           
+	            $.ajax({
+	                type: "GET",
+	                dataType: 'json',             
+	                headers: {
+	                    "X-CSRF-Token" : '{{ craft.app.request.csrfToken }}',
+	                },
+	                url: '{{ craft.app.sites.primarySite.baseUrl }}/actions/ss-entry-importer/feed/getenrty?sec='+sec,
+	                
+	                success: function(data){	                	
+						$('#entry-type').html(data);
+	                }
+	            });
+	        }
+        });
+       
+    {% endjs %}
+{% endset %}

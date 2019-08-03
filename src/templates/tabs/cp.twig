@@ -1,0 +1,13 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set title = 'SS Entry Importer' %}
+
+{% set tabs = {    
+    settings: { label: "Settings"|t, url: url('ss-entry-importer/settings') },    
+    import: { label: "Import"|t, url: url('ss-entry-importer') },
+    elementmap: { label: "Field-Mapping"|t, url: url('ss-entry-importer/elementmap') },
+    
+} %}
