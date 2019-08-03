@@ -11,8 +11,8 @@
         "ss entry importer"
     ],
     "support": {
-        "docs": "https://github.com/ssplugin/ss-field-importer",
-        "issues": "https://github.com/ssplugin/ss-field-importer"
+        "docs": "https://github.com/ssplugin/ss-entry-importer",
+        "issues": "https://github.com/ssplugin/ss-entry-importer"
     },
     "license": "MIT",
     "authors": [
@@ -34,7 +34,7 @@
         "handle": "ss-entry-importer",
         "hasCpSettings": true,
         "hasCpSection": true,
-        "changelogUrl": "https://github.com/ssplugin/ss-field-importer/blob/master/CHANGELOG.md",
+        "changelogUrl": "https://github.com/ssplugin/ss-entry-importer/blob/master/CHANGELOG.md",
         "components": {
             "ssEntryImporterService": "ssplugin\\ssentryimporter\\services\\SsEntryImporterService"
         },
