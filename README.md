@@ -28,7 +28,7 @@ To install the plugin, follow these instructions.
 <ul>
 <li>1. Settings: Once the plugin is installed, you will be able to select section and entry type in first tab on plugin settings.</li>
 <li>2. Import CSV: If section and entry-type are added then you will be able to import CSV file. CSV file formate:
-	<img src="http://datadazzle.com/ssplugin/exa-csv.png" alt="csv-exaple">
+	<img src="http://datadazzle.com/ssplugin/exa-csv.png" alt="csv-example">
 </li>
 <li>3. Field-mapping: Final step, in this section to map the fields and click on import button.</li>
 </ul>

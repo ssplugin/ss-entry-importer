@@ -6,8 +6,8 @@
 {% set content %}
 	{% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
 	{% if settings.section and settings.entry_type %}
-		{% set section  = craft.sections.getSectionById( settings.section ) %}
-		{% set entryType = craft.sections.getSectionById( settings.section ).getEntryTypes() %}
+		{% set section  = craft.app.sections.getSectionById( settings.section ) %}
+		{% set entryType = craft.app.sections.getSectionById( settings.section ).getEntryTypes() %}
 
 		<table>
             <tbody>

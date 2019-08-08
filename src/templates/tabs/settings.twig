@@ -2,7 +2,7 @@
 {% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
 
 {% set selectedTab = 'settings' %}
-{% set sections = craft.sections.getAllSections() %}
+{% set sections = craft.app.sections.allSections() %}
 {% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
 {% set content %}
 	<form method="post" action="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -58,7 +58,7 @@
 	                headers: {
 	                    "X-CSRF-Token" : '{{ craft.app.request.csrfToken }}',
 	                },
-	                url: '{{ craft.app.sites.primarySite.baseUrl }}/actions/ss-entry-importer/feed/getenrty?sec='+sec,
+	                url: '{{ url() }}/actions/ss-entry-importer/feed/getenrty?sec='+sec,
 	                
 	                success: function(data){	                	
 						$('#entry-type').html(data);

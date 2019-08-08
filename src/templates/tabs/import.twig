@@ -5,12 +5,12 @@
 {% set content %}
     {% set settings = craft.app.getModule('ss-entry-importer').getSettings() %}
     {% if settings.section %}
-        {% set entryType = craft.sections.getSectionById( settings.section ).getEntryTypes() %}
+        {% set entryType = craft.app.sections.getSectionById( settings.section ).getEntryTypes() %}
         <table>
             <tbody>
                 <tr>
                     <td><strong>Section: &nbsp;</strong></td>
-                    <td>{% if settings.section %} {% set section = craft.sections.getSectionById(settings.section) %} {{ section }} {% endif %}</td>
+                    <td>{% if settings.section %} {% set section = craft.app.sections.getSectionById(settings.section) %} {{ section }} {% endif %}</td>
                 </tr>
                 <tr>
                     <td><strong>Entry type:&nbsp;</strong></td>
