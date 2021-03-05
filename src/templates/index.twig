@@ -16,8 +16,8 @@
 {% extends "_layouts/cp" %}
 {% import "_includes/forms" as forms %}
 
-{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\ssentryimporter\\SsEntryImporterAsset") %}
-{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\SsEntryImporter\\SsEntryImporterAsset") %}
+{% do view.registerAssetBundle("ssplugin\\ssentryimporter\\assetbundles\\IndexCpSection\\IndexCpSectionAsset") %}
 
 {# Link for the ? icon at the bottom of the page #}
 {% set docsUrl = "???" %}
@@ -29,7 +29,7 @@
 {% set pluginCpUrl = url('ss-entry-importer') %}
 
 {# Get a URL to an image in our AssetBundle #}
-{% set iconUrl = view.getAssetManager().getPublishedUrl('@ssplugin/ssentryimporter/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@ssplugin/ssentryimporter/assetbundles/IndexCpSection/dist', true) ~ '/img/Index-icon.svg' %}
 
 {# Content that should appear in the page header#}
 {% set extraPageHeaderHtml %}

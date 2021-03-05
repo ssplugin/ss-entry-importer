@@ -14,6 +14,7 @@ use ssplugin\ssentryimporter\SsEntryImporter;
 
 use Craft;
 use craft\web\Controller;
+use craft\helpers\UrlHelper;
 
 /**
  * Feed Controller
@@ -48,6 +49,11 @@ class FeedController extends Controller
      */
     public function actionUpload()
     {
+        if( UrlHelper::cpUrl() != '' ) {
+            $cpUrl = UrlHelper::cpUrl();
+        } else {
+            $cpUrl = trim( Craft::getAlias('@web') );
+        }
         $settings = craft::$app->plugins->getPlugin('ss-entry-importer')->getSettings();
         if( $settings->section ) {
             if( isset( $_FILES['file'] ) ) {
@@ -76,7 +82,7 @@ class FeedController extends Controller
                     $settings = ['response_data'  => $data, 'response_header' => $header];
                     Craft::$app->getPlugins()->savePluginSettings( $plugin, $settings );            
                     
-                    return $this->redirect('/admin/ss-entry-importer/elementmap');               
+                    return $this->redirect($cpUrl.'/ss-entry-importer/elementmap');               
                 } else {
                     Craft::$app->session->setError('please choose a CSV file..');
                 }                              
@@ -88,6 +94,11 @@ class FeedController extends Controller
 
     public function actionAddsection()
     {
+        if( UrlHelper::cpUrl() != '' ) {
+            $cpUrl = UrlHelper::cpUrl();
+        } else {
+            $cpUrl = trim( Craft::getAlias('@web') );
+        }
         $section      = Craft::$app->getRequest()->getParam('section');
         $entry_type   = Craft::$app->getRequest()->getParam('entry_type');
         $entry_status = Craft::$app->getRequest()->getParam('entry_status');
@@ -96,7 +107,7 @@ class FeedController extends Controller
                       
         Craft::$app->getPlugins()->savePluginSettings($plugin, $settings);
 
-        return $this->redirect('/admin/ss-entry-importer');        
+        return $this->redirect($cpUrl.'/ss-entry-importer');        
     }
 
     public function actionImport()

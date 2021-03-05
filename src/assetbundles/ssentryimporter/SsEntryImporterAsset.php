@@ -43,7 +43,7 @@ class SsEntryImporterAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@ssplugin/ssentryimporter/assetbundles/ssentryimporter/dist";
+        $this->sourcePath = "@ssplugin/ssentryimporter/assetbundles/SsEntryImporter/dist";
 
         // define the dependencies
         $this->depends = [

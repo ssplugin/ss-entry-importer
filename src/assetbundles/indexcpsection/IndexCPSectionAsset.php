@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2019 SystemSeeders
  */
 
-namespace ssplugin\ssentryimporter\assetbundles\indexcpsection;
+namespace ssplugin\ssentryimporter\assetbundles\IndexCpSection;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -32,7 +32,7 @@ use craft\web\assets\cp\CpAsset;
  * @package   SsEntryImporter
  * @since     1.0.0
  */
-class IndexCPSectionAsset extends AssetBundle
+class IndexCpSectionAsset extends AssetBundle
 {
     // Public Methods
     // =========================================================================
@@ -43,7 +43,7 @@ class IndexCPSectionAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@ssplugin/ssentryimporter/assetbundles/indexcpsection/dist";
+        $this->sourcePath = "@ssplugin/ssentryimporter/assetbundles/IndexCpSection/dist";
 
         // define the dependencies
         $this->depends = [
