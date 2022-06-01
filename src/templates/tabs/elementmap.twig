@@ -53,7 +53,8 @@
 					</tr>	
 					{% for entfield in entryType %}
 						{% if( entfield.id == settings.entry_type ) %}
-							{% for fields in entfield.getFieldLayout().getFields() %}
+
+							{% for fields in entfield.getFieldLayout().getCustomFields() %}
 								<tr>				
 									<td><strong>{{ fields.name }}</strong> <br/>(handle: {{ fields.handle }})					
 									</td>				

@@ -37,11 +37,11 @@ class Settings extends Model
      *
      * @var string
      */
-    public $section = '';
-    public $entry_type  = '';
-    public $entry_status  = '';
-    public $response_data = [];
-    public $response_header = [];
+    public string $section = '';
+    public string $entry_type  = '';
+    public string $entry_status  = '';
+    public array $response_data = [];
+    public array $response_header = [];
 
     // Public Methods
     // =========================================================================
@@ -56,7 +56,7 @@ class Settings extends Model
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['section', 'string'],            

@@ -1,5 +1,9 @@
 # SS Entry Importer Changelog
 
+## 1.0.4 - 2022-01-06
+### Fixed
+- Craft cms 4 comptability.
+
 ## 1.0.3 - 2022-01-20
 ### Fixed
 - Fixed psr-4 autoloading standard.

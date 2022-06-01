@@ -55,6 +55,7 @@ class SsEntryImporterService extends Component
     public function Import( $getParam )
     {
         $settings = craft::$app->plugins->getPlugin('ss-entry-importer')->getSettings();
+        
         foreach ( $settings->response_data as $key => $value ) {
             $this->RunImport($value, $getParam);
         }
@@ -62,6 +63,9 @@ class SsEntryImporterService extends Component
 
     public function RunImport( array $import_data, array $getParam )
     {
+        
+
+
         $settings = craft::$app->plugins->getPlugin('ss-entry-importer')->getSettings();
         $secName = $settings->section;
         $section = Craft::$app->sections->getSectionById( $secName );
@@ -72,11 +76,13 @@ class SsEntryImporterService extends Component
                 $fields[$key] = $import_data[$value];
             }
         }
+
         $author = Craft::$app->getUser()->getIdentity();
 
         if( $settings->entry_type != '') {
             if( $getParam['title'] != 'NULL' ) {
                 if( !empty( $fields ) ) {
+
                     $entry = new Entry();
                     $entry->sectionId = $section->id;
                     $entry->typeId = isset( $settings->entry_type ) ? $settings->entry_type : 1;
@@ -89,7 +95,7 @@ class SsEntryImporterService extends Component
                     
                     $entry->title    = $import_data[ $getParam['title'] ];
                     $entry->setFieldValues( $fields );
-                    
+        
                     $success = Craft::$app->elements->saveElement( $entry );                                      
                     if ( !$success ) {                
                         Craft::$app->session->setNotice("Couldn’t save the entry..");                    

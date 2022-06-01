@@ -4,7 +4,7 @@ The plugin will be used for an importing an entries from a CSV file.(Supported f
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 4 or later and PHP 8 version.
 
 ## Installation
 

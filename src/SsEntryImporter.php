@@ -24,6 +24,7 @@ use craft\events\RegisterUrlRulesEvent;
 use craft\events\RegisterCpNavItemsEvent;
 use craft\web\twig\variables\Cp;
 use yii\base\Event;
+use craft\base\Model;
 
 /**
  * Craft plugins are very much like little applications in and of themselves. We’ve made
@@ -64,9 +65,9 @@ class SsEntryImporter extends Plugin
      *
      * @var string
      */
-    public $schemaVersion = '1.0.3';
-    public $hasCpSettings = true;
-    public $hasCpSection = true;
+    public string $schemaVersion = "1.0.4";
+    public bool $hasCpSettings = true;
+    public bool $hasCpSection = true;
 
     // Public Methods
     // =========================================================================
@@ -152,36 +153,7 @@ class SsEntryImporter extends Plugin
         );
     }
 
-    public function getCpNavItem()
-    {
-        $parent = parent::getCpNavItem();
-        // Allow user to override plugin name in sidebar
-        $parent['label'] = 'SS Entry Importer';
-        $parent['url'] = 'ss-entry-importer/settings';
-        return array_merge($parent);
-    }
-
-    public function getSettingsResponse()
-    {
-        $url = \craft\helpers\UrlHelper::cpUrl( 'ss-entry-importer/settings' );
-        return \Craft::$app->controller->redirect( $url );
-    }
-
-    private function getCpUrlRules()
-    {
-        return array(
-            'ss-entry-importer' => "ss-entry-importer/tab/import",
-            'ss-entry-importer/settings' => "ss-entry-importer/tab/settings",             
-            'ss-entry-importer/elementmap' => "ss-entry-importer/tab/elementmap",             
-        );
-    }
-
-    /**
-     * Creates and returns the model used to store the plugin’s settings.
-     *
-     * @return \craft\base\Model|null
-     */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -192,7 +164,7 @@ class SsEntryImporter extends Plugin
      *
      * @return string The rendered settings HTML
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?String
     {
         return Craft::$app->view->renderTemplate(
             'ss-entry-importer/settings',
@@ -201,4 +173,30 @@ class SsEntryImporter extends Plugin
             ]
         );
     }
+    
+    public function getCpNavItem(): array
+    {
+        $parent = parent::getCpNavItem();
+        // Allow user to override plugin name in sidebar
+        $parent['label'] = 'SS Entry Importer';
+        $parent['url'] = 'ss-entry-importer/settings';
+        return array_merge($parent);
+    }
+
+    public function getSettingsResponse(): mixed
+    {
+        $url = \craft\helpers\UrlHelper::cpUrl( 'ss-entry-importer/settings' );
+        return \Craft::$app->controller->redirect( $url );
+    }
+
+    private function getCpUrlRules(): array
+    {
+        return array(
+            'ss-entry-importer' => "ss-entry-importer/tab/import",
+            'ss-entry-importer/settings' => "ss-entry-importer/tab/settings",             
+            'ss-entry-importer/elementmap' => "ss-entry-importer/tab/elementmap",             
+        );
+    }
+
+    
 }
