@@ -1,6 +1,6 @@
 # SS Entry Importer Changelog
 
-## 1.0.4 - 2022-01-06
+## 1.0.4 - 2022-06-01
 ### Added
 - Craft cms 4 compatability.
 
